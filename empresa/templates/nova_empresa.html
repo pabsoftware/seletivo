@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 
+{% load static %}
+
+{% block 'head' %}
+<link href="{% static 'empresa/css/nova_empresa.css' %}" rel="stylesheet">
+{% endblock%}
+
 {% block 'body' %}
 
     <div class="wrapper">
