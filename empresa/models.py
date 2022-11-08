@@ -12,10 +12,11 @@ class Empresa(models.Model):
         ('N', 'Nutrição'),
         ('D', 'Design'),
     )
-    logo = models.ImageField(upload_to="logo_empresa")
+    logo = models.ImageField(upload_to="logo_empresa", null=True)
     nome = models.CharField(max_length=40)
     email = models.CharField(max_length=40)
     cidade = models.CharField(max_length=40)
+    tecnologias = models.ManyToManyField(Tecnologias) #relação muitos pra muitos
     endereco = models.CharField(max_length=40)
     caracteristicas_empresa = models.TextField()
     nicho_mercado= models.CharField(max_length=3, choices=choice_nicho_mercado)
