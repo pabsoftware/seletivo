@@ -42,7 +42,7 @@ class Vagas(models.Model):
         ('F', 'Finalizado')
     )
 
-    empresa = models.ForeignKey(Empresa, on_delete=models.DO_NOTHING) # relação um pra muitos
+    empresa = models.ForeignKey(Empresa, null=True, on_delete=models.SET_NULL) # relação um pra muitos
     titulo = models.CharField(max_length=30)
     nivel_experiencia = models.CharField(max_length=2, choices=choices_experiencia)
     data_final = models.DateField()
