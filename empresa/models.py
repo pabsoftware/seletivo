@@ -1,5 +1,7 @@
 from django.db import models
 
+
+
 class Tecnologias(models.Model):
     tecnologia = models.CharField(max_length=40)
 
@@ -23,3 +25,30 @@ class Empresa(models.Model):
 
     def __str__(self):
         return self.nome
+
+
+class Vagas(models.Model):
+    choices_experiencia = (
+        ('J', 'Júnior'),
+        ('P', 'Pleno'),
+        ('S', 'Sênior')
+    ) 
+    
+    choices_status = (
+        ('I', 'Interesse'),
+        ('C', 'Curriculo enviado'),
+        ('E', 'Entrevista'),
+        ('D', 'Desafio técnico'),
+        ('F', 'Finalizado')
+    )
+
+    empresa = models.ForeignKey(Empresa, on_delete=models.DO_NOTHING) # relação um pra muitos
+    titulo = models.CharField(max_length=30)
+    nivel_experiencia = models.CharField(max_length=2, choices=choices_experiencia)
+    data_final = models.DateField()
+    status = models.CharField(max_length = 2, choices=choices_status)
+    tecnologias_dominadas = models.ManyToManyField(Tecnologias)
+    tecnologias_estudar = models.ManyToManyField(Tecnologias, related_name='Estudar')
+
+    def __str__(self):
+        return self.titulo
