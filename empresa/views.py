@@ -51,3 +51,8 @@ def nova_empresa(request):
         messages.add_message(request, constants.SUCCESS, 'Empresa cadastrada com sucesso')
 
         return redirect('/home/nova_empresa')
+    
+
+def empresas(request):
+    template_name= 'empresa.html'
+    return render(request, template_name)
