@@ -50,7 +50,7 @@ def nova_empresa(request):
         empresa.save()
         messages.add_message(request, constants.SUCCESS, 'Empresa cadastrada com sucesso')
 
-        return redirect('/home/nova_empresa')
+        return redirect('/home/empresas')
     
 
 def empresas(request):
@@ -60,3 +60,12 @@ def empresas(request):
     context = {'empresas': empresas}
 
     return render(request, template_name, context)
+
+
+def excluir_empresa(request, id):
+    template_name = 'empresa.html'
+
+    empresa = Empresa.objects.get(id=id)
+    empresa.delete()
+    messages.add_message(request, constants.SUCCESS, 'Empresa excluida com sucesso')
+    return redirect('/home/empresas')
