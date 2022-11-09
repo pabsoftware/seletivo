@@ -51,23 +51,25 @@
                         <th>Ação</th>
                     </tr>
 
-                    
+                    {% for emp in empresas %}
                         <tr class="tabela-linha" >
-                            <td>Nome da empresa</td>
-                            <td>Endereço da empresa</td>
+                            <td>{{emp.nome}}</td>
+                            <td>{{emp.endereco}}</td>
                             <td>
-                                <select class="form-select">       
-                                    <option></option>                    
+                                <select class="form-select">      
+                                    {% for tec in emp.tecnologias.all %} 
+                                    <option>{{tec}}</option>  
+                                    {% endfor %}                  
                                 </select>
                             </td>
                             <td>
-                                Quantidade de vagas
+                                {{emp.vagas}}
                             </td>
                             <td>
                                 <a class="btn-excluir">Excluir empresa</a>
                             </td>
                         </tr>
-                    
+                    {% endfor %}
                 </table>
             </div>
 
