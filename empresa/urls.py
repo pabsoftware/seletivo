@@ -9,3 +9,4 @@ urlpatterns = [
     path('excluir_empresas/<int:id>', views.excluir_empresa, name='excluir_empresa'),
     path('empresa/<int:id>', views.unica_empresa, name='unica_empresa'),
 ]
+
