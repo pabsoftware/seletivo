@@ -55,11 +55,20 @@ def nova_empresa(request):
 
 def empresas(request):
     template_name= 'empresa.html'
-    if request.method == "GET":
-        nome = ''
-
+    
+    nome_filtrar = request.GET.get('nome')
+    tecnologia_filtrar = request.GET.get('tecnologias')
     empresas = Empresa.objects.all()
     tecnologias = Tecnologias.objects.all()
+  
+    if tecnologia_filtrar:
+        
+        empresas = empresas.filter(tecnologias=tecnologia_filtrar)
+
+    if nome_filtrar:
+        empresas = empresas.filter(nome=nome_filtrar)
+    
+
     context = { 'empresas'      : empresas,
                 'tecnologias'   : tecnologias
             }
