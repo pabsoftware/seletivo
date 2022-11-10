@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse
 from .models import Tecnologias, Empresa
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.messages import constants
 
@@ -83,3 +83,12 @@ def excluir_empresa(request, id):
     empresa.delete()
     messages.add_message(request, constants.SUCCESS, 'Empresa excluida com sucesso')
     return redirect('/home/empresas')
+
+
+def unica_empresa(request, id):
+    teplate_name = 'unica_empresa.html'
+    empresa_unica = get_object_or_404(Empresa, id=id)
+
+    context = {'empresa': empresa_unica}
+
+    return render(request, teplate_name, context)
