@@ -55,9 +55,14 @@ def nova_empresa(request):
 
 def empresas(request):
     template_name= 'empresa.html'
-    empresas = Empresa.objects.all()
+    if request.method == "GET":
+        nome = ''
 
-    context = {'empresas': empresas}
+    empresas = Empresa.objects.all()
+    tecnologias = Tecnologias.objects.all()
+    context = { 'empresas'      : empresas,
+                'tecnologias'   : tecnologias
+            }
 
     return render(request, template_name, context)
 
