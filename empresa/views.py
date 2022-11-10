@@ -66,7 +66,7 @@ def empresas(request):
         empresas = empresas.filter(tecnologias=tecnologia_filtrar)
 
     if nome_filtrar:
-        empresas = empresas.filter(nome=nome_filtrar)
+        empresas = empresas.filter(nome__icontains=nome_filtrar)
     
 
     context = { 'empresas'      : empresas,
