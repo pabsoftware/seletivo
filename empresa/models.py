@@ -51,6 +51,7 @@ class Vagas(models.Model):
     titulo = models.CharField(max_length=30)
     nivel_experiencia = models.CharField(max_length=2, choices=choices_experiencia)
     data_final = models.DateField()
+    email = models.EmailField(null=True)
     status = models.CharField(max_length = 2, choices=choices_status)
     tecnologias_dominadas = models.ManyToManyField(Tecnologias)
     tecnologias_estudar = models.ManyToManyField(Tecnologias, related_name='Estudar')
