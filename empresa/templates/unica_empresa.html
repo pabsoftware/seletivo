@@ -144,7 +144,10 @@
                         <div class="col-md">
                             <label>Empresa:</label>
                             <select name="empresa" class="form-select">
-                                                                                                                                 
+                               
+                              {% for empresas in empresas %}   
+                                <option {% if empresas.id == empresa.id %} selected {% endif %} value="{{empresas.id}}"> {{empresas}} </option>
+                              {% endfor %}
                             </select>
                         </div>
        

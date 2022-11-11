@@ -88,7 +88,11 @@ def excluir_empresa(request, id):
 def unica_empresa(request, id):
     teplate_name = 'unica_empresa.html'
     empresa_unica = get_object_or_404(Empresa, id=id)
-
-    context = {'empresa': empresa_unica}
+    empresas = Empresa.objects.all()
+    tecnologias = Tecnologias.objects.all()
+    context = { 'empresa'       : empresa_unica,
+                'tecnologias'   : tecnologias,
+                'empresas'      : empresas
+            }
 
     return render(request, teplate_name, context)
