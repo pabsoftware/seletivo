@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse
-from .models import Tecnologias, Empresa
+from .models import Tecnologias, Empresa, Vagas
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.messages import constants
@@ -90,9 +90,11 @@ def unica_empresa(request, id):
     empresa_unica = get_object_or_404(Empresa, id=id)
     empresas = Empresa.objects.all()
     tecnologias = Tecnologias.objects.all()
+    vagas = Vagas.objects.filter(empresa_id=id)
     context = { 'empresa'       : empresa_unica,
                 'tecnologias'   : tecnologias,
-                'empresas'      : empresas
+                'empresas'      : empresas,
+                'vagas'         : vagas,
             }
 
     return render(request, teplate_name, context)
