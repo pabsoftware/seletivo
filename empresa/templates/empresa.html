@@ -59,7 +59,7 @@
                         
                         <tr {% if not forloop.counter|is_par %} class="tabela-linha" {% endif %}>
 
-                            <td>{{emp.nome}} </td>
+                           <td> <a href="{% url 'unica_empresa' emp.id %}"> {{emp.nome}} </a></td> 
                             <td>{{emp.endereco}}</td>
                             <td>
                                 <select class="form-select">      
