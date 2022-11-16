@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'head' %}
+    <link rel = "stylesheet" href = "{% static 'vaga/css/vaga.css' %}">
+{% endblock 'head' %}
+
+{% block 'body' %}
+    <div class = "container">
+        {% if messages %}
+            {% for message in messages %}
+                <br>
+                <section class="alert {{message.tags}}">
+                    {{message}}
+                </section>
+            {% endfor %}
+        {% endif %}   
+        <br>
+        <h3 class = "titulo"> {{vaga.titulo}} </h3>
+        <p class = "titulo2"> {{vaga.empresa}} </p>
+        <p> Progresso atual</p>
+        <div style = "width: 40%" class="progress">
+            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 80%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        
+    </div>
+{% endblock 'body' %}
