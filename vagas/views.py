@@ -5,6 +5,12 @@ from django.shortcuts import redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.messages import constants
 from .models import Tarefa
+# 03 imports para envio de emails com template html
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+from django.core.mail import EmailMultiAlternatives
+
+from django.conf import settings
 
 def nova_vaga(request):
     if request.method == 'POST':
@@ -81,3 +87,22 @@ def realizar_tarefa(request, id):
         tarefa.save()
         messages.add_message(request, constants.SUCCESS, 'Tarefa finalizada com sucesso')
         return redirect(f'/vagas/vaga/{tarefa.vaga.id}')
+
+def enviar_email(request, id):
+   
+    vaga = Vagas.objects.get(id=id)
+    assunto = request.POST.get('assunto')
+    corpo = request.POST.get('corpo')
+
+    html_content = render_to_string('emails/template_email.html', {'corpo':corpo})
+    text_content = strip_tags(html_content)
+    email = EmailMultiAlternatives(
+                                    assunto, 
+                                    text_content, 
+                                    settings.EMAIL_HOST_USER,
+                                    [vaga.email,]
+                                    )
+    email.attach_alternative(html_content, "text/html")
+    email.send()
+
+    return HttpResponse(assunto)
