@@ -7,6 +7,7 @@ name = "pypi"
 django = "*"
 pillow = "*"
 flask = "*"
+pytest = "*"
 
 [dev-packages]
 

@@ -54,6 +54,7 @@ def nova_empresa(request):
     
 
 def empresas(request):
+    
     template_name= 'empresa.html'
     
     nome_filtrar = request.GET.get('nome')

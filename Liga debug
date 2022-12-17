@@ -1,0 +1,4 @@
+Ligando o debug
+
+	import pdb
+  	pdb.set_trace()
